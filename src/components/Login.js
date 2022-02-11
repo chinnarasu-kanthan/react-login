@@ -22,12 +22,12 @@ const Login = () => {
   const form = useRef();
   const checkBtn = useRef();
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState(null);
+  const [password, setPassword] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const { isLoggedIn } = useSelector(state => state.auth);
-  const { message } = useSelector(state => state.message);
+  // const { isLoggedIn } = useSelector(state => state.auth);
+  // const { message } = useSelector(state => state.message);
 
   const dispatch = useDispatch();
 
@@ -44,22 +44,22 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // setLoading(true);
+    setLoading(true);
 
-    // form.current.validateAll();
+    form.current.validateAll();
 
-    // if (checkBtn.current.context._errors.length === 0) {
-    //   dispatch(login(username, password))
-    //     .then(() => {
-    //       props.history.push("/profile");
-    //       window.location.reload();
-    //     })
-    //     .catch(() => {
-    //       setLoading(false);
-    //     });
-    // } else {
-    //   setLoading(false);
-    // }
+    if (checkBtn.current.context._errors.length === 0) {
+      dispatch(login(username, password))
+        .then(() => {
+          props.history.push("/profile");
+          window.location.reload();
+        })
+        .catch(() => {
+          setLoading(false);
+        });
+    } else {
+      setLoading(false);
+    }
   };
 
   // if (isLoggedIn) {
@@ -100,8 +100,8 @@ const Login = () => {
             />
           </div>
 
-          <div className="form-group">
-            <button className="btn btn-primary btn-block" disabled={loading}>
+          <div className="form-group mt-3 align-self-center ">
+            <button className=" align-self-center btn btn-primary btn-block" disabled={loading}>
               {loading && (
                 <span className="spinner-border spinner-border-sm"></span>
               )}
@@ -109,13 +109,13 @@ const Login = () => {
             </button>
           </div>
 
-          {message && (
+          {/* {message && (
             <div className="form-group">
               <div className="alert alert-danger" role="alert">
                 {message}
               </div>
             </div>
-          )}
+          )} */}
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
       </div>
