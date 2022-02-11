@@ -4,7 +4,7 @@ import AuthService from '../AuthService';
 
 export const login = (username, password) => (dispatch) => {
   return AuthService.login(username, password).then(
-    (data) => {
+    (data) => { 
       dispatch({
         type: LOGIN_SUCCESS,
         payload: { user: data },
