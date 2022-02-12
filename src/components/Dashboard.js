@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Layout from "./Layout"
+
 
 
 const Dashboard = () => {
@@ -8,7 +10,7 @@ const Dashboard = () => {
   return (
     <div className="container">
       <header className="jumbotron">
-        <h3>{content}</h3>
+        <h3><Layout /></h3>
       </header>
     </div>
   );
